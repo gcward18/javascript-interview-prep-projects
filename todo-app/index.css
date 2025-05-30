@@ -198,3 +198,27 @@ footer {
     background-color: #40444b;
     color: var(--text-color);
 }
+/* Webkit browsers (Chrome, Edge, Safari) */
+.todo-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+    background-color: rgba(114, 137, 218, 0.4); /* accent color, semi-transparent */
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.todo-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(114, 137, 218, 0.7);
+}
+
+/* Firefox */
+.todo-list {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(114, 137, 218, 0.4) transparent;
+}
