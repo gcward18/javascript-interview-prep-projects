@@ -24,96 +24,121 @@ window.onload = () => {
         return Date.now().toString() + Math.random().toString(16).slice(2);
     };
 
-    const render = () => {
-        todoListArea.innerHTML = '';
-        
-        filteredToDoList.forEach(todo => {
-            let row = document.createElement("div");
-            row.className = `todo-list-item ${todo.complete ? 'complete' : 'incomplete'}`;
-            row.id = todo.id;
-            row.setAttribute("role", "listitem")
+    const buildRow = (todo) =>  {
+        let row = document.createElement("div");
+        row.className = `todo-list-item ${todo.complete ? 'complete' : 'incomplete'}`;
+        row.id = todo.id;
+        row.setAttribute("data-id", `todo-${todo.id}`);
+        row.setAttribute("role", "listitem");
 
-            // create text
-            let text = document.createElement("div");
-            text.className = "todo-text-area";
-            text.innerHTML = todo.value;
-            text.ariaLabel = todo.value;
+        // create text
+        let text = document.createElement("div");
+        text.className = "todo-text-area";
+        text.innerHTML = todo.value;
+        text.ariaLabel = todo.value;
 
-            text.addEventListener("dblclick", (event) => {
-                if (text.querySelector("input")) return;
+        text.addEventListener("dblclick", (event) => {
+            if (text.querySelector("input")) return;
 
-                const input = document.createElement("input");
-                input.type = "text";
-                input.value = todo.value
-                input.className = "edit-input";
-                input.setAttribute("aria-label", "Edit task");
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = todo.value
+            input.className = "edit-input";
 
-                // clear current text and insert input
-                text.innerHTML = '';
-                text.appendChild(input);
-                input.focus();
-                input.setAttribute("aria-label", "Edit Task");
+            // clear current text and insert input
+            text.innerHTML = '';
+            text.appendChild(input);
+            input.focus();
+            input.setAttribute("aria-label", "Edit Task");
 
-                // save on enter
-                input.addEventListener("keydown", (event) => {
-                    if (event.key == "Enter") {
-                        saveEdit();
-                    }
-                });
-
-                // save on focus out
-                input.addEventListener("blur", () => {
+            // save on enter
+            input.addEventListener("keydown", (event) => {
+                if (event.key == "Enter") {
                     saveEdit();
-                });
-
-                const saveEdit = () => {
-                    const newValue = input.value.trim();
-                    if (newValue !== "") {
-                        todo.value = newValue;
-                    }
-                    saveToLocalStorage();
-                    filter();
-                    render();
                 }
-            })
-
-            // create checkbox
-            let checkbox = document.createElement("input");
-            checkbox.className = "todo-toggle";
-            checkbox.type = "checkbox";
-            checkbox.checked = todo.complete;
-
-            checkbox.addEventListener("change", (event) => {
-               todo.complete = event.target.checked;
-               saveToLocalStorage();
-               filter();
-               render(); 
             });
 
-            // create remove button
-            let button = document.createElement("button");
-            button.className = 'todo-remove-button';
-            button.innerHTML = 'Remove'
-            button.addEventListener("click", (event) => {
-                todoList = todoList.filter(item => item.id != todo.id);
-                filter();
+            // save on focus out
+            input.addEventListener("blur", () => {
+                saveEdit();
+            });
+
+            const saveEdit = () => {
+                const newValue = input.value.trim();
+                if (newValue !== "") {
+                    todo.value = newValue;
+                }
+                updateSingleRow(todo);
                 saveToLocalStorage();
-                render(); 
-            });
-            
-            // build row
-            row.appendChild(text);
-            row.appendChild(checkbox);
-            row.appendChild(button);
-
-            // add row to list area
-            todoListArea.appendChild(row);
+            }
         })
+
+        // create checkbox
+        let checkbox = document.createElement("input");
+        checkbox.className = "todo-toggle";
+        checkbox.type = "checkbox";
+        checkbox.setAttribute("aria-label", `Mark Task: ${todo.value} as complete`)
+        checkbox.checked = todo.complete;
+
+        checkbox.addEventListener("change", (event) => {
+           todo.complete = event.target.checked;
+           updateSingleRow(todo);
+           saveToLocalStorage();
+           updateCounts();
+        });
+
+        // create remove button
+        let button = document.createElement("button");
+        button.className = 'todo-remove-button';
+        button.innerHTML = 'Remove';
+        button.setAttribute("aria-label", `Remove Task: ${todo.value}`);
+        button.addEventListener("click", (event) => {
+            todoList = todoList.filter(item => item.id != todo.id);
+            removeSingleRow(todo.id);
+            saveToLocalStorage();
+            updateCounts();
+        });
         
-    
+        // build row
+        row.appendChild(text);
+        row.appendChild(checkbox);
+        row.appendChild(button);
+
+        // add row to list area
+        return row;
+    };
+
+    const updateSingleRow = todo => {
+        const row = document.querySelector(`[data-id="todo-${todo.id}"]`);
+        if (row) {
+            row.className = `todo-list-item ${todo.complete ? "complete":"incomplete"}`;
+        }
+    };
+
+    const removeSingleRow = id => {
+        const row = document.querySelector(`[data-id="todo-${id}"]`);
+        if (row) {
+            row.remove();
+        }
+    };
+
+    const updateCounts = () => {
         remainingCount = document.getElementById("todo-remaining-count");
         remainingCount.innerHTML = `${todoList.filter(x => x.complete).length}`;
-        totalCount = document.getElementById("todo-total-count");        totalCount.innerHTML = `${todoList.length}`;
+        totalCount = document.getElementById("todo-total-count");        
+        totalCount.innerHTML = `${todoList.length}`;
+    };
+
+    const render = () => {
+        todoListArea.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+        filteredToDoList.forEach(todo => {
+            const row = buildRow(todo);
+            fragment.appendChild(row);
+        });
+        todoListArea.appendChild(fragment);
+        
+        updateCounts();
     };
 
     const filter = () => {
@@ -169,6 +194,7 @@ window.onload = () => {
         filter();
         saveToLocalStorage();
         render();
+        todoTextBox.focus();
     });
 
     todoFilterAll.addEventListener("click", () => {
@@ -186,4 +212,12 @@ window.onload = () => {
     todoList = getFromLocalStorage() || [];
     filter();
     render();
+
+    
+    const themeToggle = document.getElementById("theme-toggle");
+
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+        themeToggle.textContent = document.body.classList.contains("light-mode") ? "🌑 Dark Mode" : "🌙 Light Mode";
+    });
 };
