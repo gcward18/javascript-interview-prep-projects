@@ -36,7 +36,7 @@ window.onload = () => {
             let text = document.createElement("div");
             text.className = "todo-text-area";
             text.innerHTML = todo.value;
-            let preventDblClick = false;
+
             text.addEventListener("dblclick", (event) => {
                 if (text.querySelector("input")) return;
 
@@ -126,39 +126,21 @@ window.onload = () => {
     }
 
     const toggleFilter = (type) => {
-        if (type == "all") {
-            if (currentFilter == "all") {
-                currentFilter = null;
-                todoFilterAll.className = "todo-filter-button inactive"            
-            } else {
-                currentFilter = "all";
-                todoFilterAll.className = "todo-filter-button active"
+        const buttons = {
+            all: todoFilterAll,
+            complete: todoFilterComplete,
+            incomplete: todoFilterIncomplete
+        };
+
+        Object.keys(buttons).forEach(key => {
+            if (key == type) {
+                buttons[key].classList.add('complete');
             }
-            todoFilterComplete.className = "todo-filter-button inactive"
-            todoFilterIncomplete.className = "todo-filter-button inactive"
-        }
-        if (type == "complete") {
-            if (currentFilter == "complete") {
-                currentFilter = null;
-                todoFilterComplete.className = "todo-filter-button inactive"            
-            }else {
-                currentFilter = "complete";
-                todoFilterComplete.className = "todo-filter-button active"
+            else {
+                buttons[key].classList.add('inactive');
             }
-            todoFilterAll.className = "todo-filter-button inactive"
-            todoFilterIncomplete.className = "todo-filter-button inactive"
-        }
-        else if (type == "incomplete") {
-            if (currentFilter == "incomplete") {
-                currentFilter = null;
-                todoFilterComplete.className = "todo-filter-button inactive"            
-            }else {
-                currentFilter = "incomplete";
-                todoFilterComplete.className = "todo-filter-button active"
-            }
-            todoFilterAll.className = "todo-filter-button inactive"
-            todoFilterComplete.className = "todo-filter-button inactive"
-        }
+        });
+        currentFilter = type;
         filter();
         render();
     };
