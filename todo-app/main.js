@@ -28,12 +28,12 @@ window.onload = () => {
         todoListArea.innerHTML = '';
         
         filteredToDoList.forEach(todo => {
-            row = document.createElement("div");
+            let row = document.createElement("div");
             row.className = `todo-list-item ${todo.complete ? 'complete' : 'incomplete'}`;
             row.id = todo.id;
 
             // create text
-            text = document.createElement("div");
+            let text = document.createElement("div");
             text.className = "todo-text-area";
             text.innerHTML = todo.value;
             let preventDblClick = false;
@@ -74,21 +74,20 @@ window.onload = () => {
             })
 
             // create checkbox
-            checkbox = document.createElement("input");
+            let checkbox = document.createElement("input");
             checkbox.className = "todo-toggle";
             checkbox.type = "checkbox";
             checkbox.checked = todo.complete;
 
             checkbox.addEventListener("change", (event) => {
                todo.complete = event.target.checked;
-               todoList = todoList.map(td => td.id == todo.id ? todo : td);
                saveToLocalStorage();
                filter();
                render(); 
             });
 
             // create remove button
-            button = document.createElement("button");
+            let button = document.createElement("button");
             button.className = 'todo-remove-button';
             button.innerHTML = 'Remove'
             button.addEventListener("click", (event) => {
@@ -146,7 +145,7 @@ window.onload = () => {
                 currentFilter = "complete";
                 todoFilterComplete.className = "todo-filter-button active"
             }
-            todoFilterComplete.className = "todo-filter-button active"
+            todoFilterAll.className = "todo-filter-button inactive"
             todoFilterIncomplete.className = "todo-filter-button inactive"
         }
         else if (type == "incomplete") {
@@ -189,7 +188,7 @@ window.onload = () => {
         toggleFilter("incomplete");
     });
 
-    todoList = getFromLocalStorage();
+    todoList = getFromLocalStorage() || [];
     filter();
     render();
 };
