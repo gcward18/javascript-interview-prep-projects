@@ -36,6 +36,7 @@ window.onload = () => {
             let text = document.createElement("div");
             text.className = "todo-text-area";
             text.innerHTML = todo.value;
+            text.ariaLabel = todo.value;
 
             text.addEventListener("dblclick", (event) => {
                 if (text.querySelector("input")) return;
@@ -134,18 +135,19 @@ window.onload = () => {
 
         Object.keys(buttons).forEach(key => {
             if (key == type) {
-                buttons[key].classList.add('complete');
+                buttons[key].classList.replace('inactive', 'active');
             }
             else {
-                buttons[key].classList.add('inactive');
+                buttons[key].classList.replace('active', 'inactive');
             }
         });
         currentFilter = type;
-        filter();
+       filter();
         render();
     };
 
     todoButton.addEventListener("click", (event) => {
+        if (todoTextBox.value == "") return;
         const todo = {
             id: generateID(),
             value: todoTextBox.value,

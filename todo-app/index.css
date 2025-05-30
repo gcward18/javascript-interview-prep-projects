@@ -3,19 +3,23 @@ body {
 }
 
 .todo-list {
-    display: grid;
     gap:10px;
     padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    min-height: 80%;
+    overflow: scroll;
 }
 .todo-list-item {
     padding: 20px;
     display: flex;
     flex-direction: row;
-    width: 20rem;
+    width: 40rem;
     border:1px solid gray;
     border-radius: 5px;
-    box-shadow: 5px 10px rgba(0,0,0,.3);
-    margin-top:10px
+    margin-top:10px;
+    height: 25px;
 }
 .complete {
     background-color: rgba(14, 200, 100, 0.5);
@@ -26,7 +30,7 @@ body {
     box-shadow: 5px 5px rgba(255, 15, 15, 0.3);
 }
 .todo-text-area {
-    width: 15rem;
+    width: 90%;
 }
 .todo-remove-button {
     background-color: red;
@@ -50,6 +54,10 @@ body {
 
 .todo-filter-button.active {
     background-color: rgba(0,0,255, .1);
+}
+.todo-filter-button.inactive {
+    background-color: none;
+
 }
 
 footer {

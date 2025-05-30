@@ -8,15 +8,17 @@
             <h1>Todo App</h1>
         </header>
         <div class="main-body">
+            <div style="display: flex; align-items: anchor-center;">
+                <div>
+                    <input id="todo-add-input" type="text"/>
+                    <button id="todo-add-button">+</button>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <button id="todo-filter-all" class="todo-filter-button active">All</button>
+                    <button id="todo-filter-complete" class="todo-filter-button inactive">Complete</button>
+                    <button id="todo-filter-incomplete"class="todo-filter-button inactive">Incomplete</button>
+                </div>
 
-            <div>
-                <input id="todo-add-input" type="text"/>
-                <button id="todo-add-button">+</button>
-            </div>
-            <div style="display: flex; flex-direction: row;">
-                <button id="todo-filter-all" class="todo-filter-button">All</button>
-                <button id="todo-filter-complete" class="todo-filter-button">Complete</button>
-                <button id="todo-filter-incomplete"class="todo-filter-button">Incomplete</button>
             </div>
     
             <ol id="todo-list" class="todo-list">
