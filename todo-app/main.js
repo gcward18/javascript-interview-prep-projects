@@ -31,6 +31,7 @@ window.onload = () => {
             let row = document.createElement("div");
             row.className = `todo-list-item ${todo.complete ? 'complete' : 'incomplete'}`;
             row.id = todo.id;
+            row.setAttribute("role", "listitem")
 
             // create text
             let text = document.createElement("div");
@@ -45,11 +46,13 @@ window.onload = () => {
                 input.type = "text";
                 input.value = todo.value
                 input.className = "edit-input";
+                input.setAttribute("aria-label", "Edit task");
 
                 // clear current text and insert input
                 text.innerHTML = '';
                 text.appendChild(input);
                 input.focus();
+                input.setAttribute("aria-label", "Edit Task");
 
                 // save on enter
                 input.addEventListener("keydown", (event) => {
@@ -109,9 +112,8 @@ window.onload = () => {
         
     
         remainingCount = document.getElementById("todo-remaining-count");
-        remainingCount.innerHTML = `${todoList.length - todoList.filter(x => !x.complete).length}`;
-        totalCount = document.getElementById("todo-total-count");
-        totalCount.innerHTML = `${todoList.length}`;
+        remainingCount.innerHTML = `${todoList.filter(x => x.complete).length}`;
+        totalCount = document.getElementById("todo-total-count");        totalCount.innerHTML = `${todoList.length}`;
     };
 
     const filter = () => {
@@ -136,9 +138,11 @@ window.onload = () => {
         Object.keys(buttons).forEach(key => {
             if (key == type) {
                 buttons[key].classList.replace('inactive', 'active');
+                buttons[key].setAttribute('aria-pressed', 'true');
             }
             else {
                 buttons[key].classList.replace('active', 'inactive');
+                buttons[key].setAttribute('aria-pressed', 'false');
             }
         });
         currentFilter = type;
@@ -146,11 +150,18 @@ window.onload = () => {
         render();
     };
 
+    todoTextBox.addEventListener("keydown", (event) => {
+        if (event.key == "Enter") {
+            todoButton.click();
+        }
+    });
+
     todoButton.addEventListener("click", (event) => {
-        if (todoTextBox.value == "") return;
+        const inputValue = todoTextBox.value.trim()
+        if (inputValue == "") return;
         const todo = {
             id: generateID(),
-            value: todoTextBox.value,
+            value: inputValue,
             complete: false
         };
         todoTextBox.value = "";

@@ -11,22 +11,22 @@
             <div style="display: flex; align-items: anchor-center;">
                 <div>
                     <input id="todo-add-input" type="text"/>
-                    <button id="todo-add-button">+</button>
+                    <button id="todo-add-button" aria-label="add task">+</button>
                 </div>
                 <div style="display: flex; flex-direction: row;">
-                    <button id="todo-filter-all" class="todo-filter-button active">All</button>
-                    <button id="todo-filter-complete" class="todo-filter-button inactive">Complete</button>
-                    <button id="todo-filter-incomplete"class="todo-filter-button inactive">Incomplete</button>
+                    <button id="todo-filter-all" class="todo-filter-button active" aria-label="show all">All</button>
+                    <button id="todo-filter-complete" class="todo-filter-button inactive" aria-label="show completed tasks only">Complete</button>
+                    <button id="todo-filter-incomplete"class="todo-filter-button inactive" aria-label="show incomplete tasks only">Incomplete</button>
                 </div>
 
             </div>
     
-            <ol id="todo-list" class="todo-list">
+            <ol id="todo-list" class="todo-list" role="list">
                 
             </ol>
         </div>
         <div class="footer">
-            <div class="footer-item">
+            <div class="footer-item" aria-live="polite">
                 <p id="todo-remaining-count">0</p> / <p id="todo-total-count">0</p>
             </div>
         </div>
