@@ -1,0 +1,59 @@
+body {
+
+}
+
+.todo-list {
+    display: grid;
+    gap:10px;
+    padding-left: 0px;
+}
+.todo-list-item {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 20rem;
+    border:1px solid gray;
+    border-radius: 5px;
+}
+.complete {
+    background-color: rgba(14, 200, 100, 0.5);
+}
+.incomplete {
+    background-color: rgba(255, 15, 15, 0.5);
+}
+.todo-text-area {
+    width: 15rem;
+}
+.todo-remove-button {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    content: "X";
+    border: 0px;
+    padding: 5px
+}
+.todo-filter-button {
+    border:none;
+    background-color: transparent;
+    color: blue;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+}
+.todo-filter-button:hover {
+    background-color: rgba(0,0,0, .1);
+}
+
+.todo-filter-button.active {
+    background-color: rgba(0,0,255, .1);
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+}
+.footer-item {
+    display: flex;
+    flex-direction: row;
+    align-items: anchor-center;
+}
