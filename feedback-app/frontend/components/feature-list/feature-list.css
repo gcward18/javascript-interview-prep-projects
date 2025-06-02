@@ -1,0 +1,172 @@
+/* === FEATURE REQUEST CONTAINER === */
+.feature-request {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    border-left: 4px solid transparent; /* Default, overridden below */
+    background-color: #f0f2f5;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* === Status-specific borders === */
+.feature-request.open {
+    border-left-color: #1877f2; /* Blue */
+}
+
+.feature-request.planned {
+    border-left-color: #f7b928; /* Yellow/Orange */
+}
+
+.feature-request.in_progress {
+    border-left-color: #f5533d; /* Red */
+}
+
+.feature-request.completed {
+    border-left-color: #42b72a; /* Green */
+}
+
+/* Optional: subtle background shade change too */
+.feature-request.open:hover {
+    background-color: #e8f0fe;
+}
+
+.feature-request.planned:hover {
+    background-color: #fff7e0;
+}
+
+.feature-request.in_progress:hover {
+    background-color: #fde8e8;
+}
+
+.feature-request.completed:hover {
+    background-color: #e6f4ea;
+}
+
+.feature-request:hover {
+    background-color: #e4e6eb;
+}
+
+/* Feature request text */
+.feature-request-text {
+    flex: 1;
+    margin-right: 10px;
+    font-size: 15px;
+    color: #050505;
+}
+
+/* Feature status dropdown */
+.feature-request select.feature-request-text {
+    margin-right: 10px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    border: 1px solid #ccd0d5;
+    background-color: white;
+    font-size: 13px;
+}
+
+/* === SUB COMMENTS === */
+.comment-row {
+    display: flex;
+    align-items: center;
+    background-color: #e9ebee;
+    padding: 10px 14px;
+    margin-left: 40px; /* Indent under parent */
+    margin-top: 6px;
+    border-radius: 10px;
+    border-left: 2px solid #d8dadf;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.comment-row:hover {
+    background-color: #dfe2e7;
+}
+
+/* Comment text */
+.comment-text {
+    flex: 1;
+    margin-right: 8px;
+    color: #050505;
+}
+
+/* Author label */
+.author-text {
+    font-size: 12px;
+    color: #65676b;
+    margin-right: 10px;
+}
+
+/* Upvote/downvote and remove buttons */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 3px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Arrow icons */
+.icon-btn {
+    font-size: 16px;
+    color: #65676b;
+}
+
+/* Upvote/downvote counts */
+.count-text {
+    font-size: 12px;
+    color: #65676b;
+    margin: 0 4px;
+}
+
+/* === FEATURE REQUEST HEADER === */
+.feature-request-container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.feature-request-container-header h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #050505;
+    margin: 0;
+}
+
+.feature-request-add-container {
+    display: flex;
+    align-items: center;
+}
+
+#feature-request-input {
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccd0d5;
+    margin-right: 6px;
+}
+
+.add-btn {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #166fe5;
+}
