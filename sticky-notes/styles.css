@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+}
+body::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 2px,
+        rgba(0, 0, 0, 0.1) 4px
+    );
+    z-index: 9999;
+}
+.edit-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.add-btn {
+    background-color: #ff0080;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #ff0080, 0 0 16px #ff0080 inset;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 1px;
+}
+.add-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px #ff0080, 0 0 20px #ff0080 inset;
+}
+
+#drop-area {
+    position: relative;
+    height: calc(100vh - 80px);
+    border: 2px dashed #00ffe7;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px #00ffe7;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 20px
+    );
+    background-color: #1c1b2a;
+}
+
+.sticky-note-container {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    padding: 12px;
+    background: rgba(255, 0, 221, 0.15);
+    color: #00ffe7;
+    border: 2px solid #ff00cc;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #ff00cc, 0 0 12px #ff00cc;
+    cursor: move;
+    transition: all 0.2s ease;
+}
+.sticky-note-container:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 0 12px #ff00cc, 0 0 24px #ff00cc;
+}
+
+.text {
+    font-size: 0.7rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    cursor: pointer;
+    user-select: text;
+}
+
+.edit-sticky-note {
+    font-family: 'Press Start 2P', monospace;
+    background-color: #000;
+    color: #00ffe7;
+    border: 1px solid #00ffe7;
+    width: 100%;
+    padding: 4px;
+    font-size: 0.6rem;
+}
+
+.sticky-note-container button {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.sticky-note-container button svg {
+    fill: #ff0080;
+    width: 16px;
+    height: 16px;
+}
+.sticky-note-container button:hover svg {
+    filter: drop-shadow(0 0 5px #ff0080);
+}
