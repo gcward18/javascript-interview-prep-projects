@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #0f0f0f;
+    color: #00f0ff;
+    padding: 20px;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    color: #ff0055;
+    text-shadow: 0 0 5px #ff0055, 0 0 10px #ff0055;
+}
+
+h2.title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #00ff88;
+    text-shadow: 0 0 5px #00ff88;
+}
+
+.header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.add-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+input[type="text"] {
+    background-color: #1a1a1a;
+    border: 1px solid #00f0ff;
+    color: #00f0ff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 250px;
+    box-shadow: 0 0 6px #00f0ff;
+}
+
+button {
+    background-color: #ff0055;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 6px #ff0055;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px #ff0055;
+}
+
+.body {
+    display: flex;
+    height: 85vh;
+}
+
+.grid {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    padding: 10px;
+}
+
+.column {
+    flex: 1;
+    border: 2px solid #00f0ff;
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px #00f0ff;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    overflow: hidden;
+}
+#to-do { border-color: #00f0ff; box-shadow: 0 0 10px #00f0ff; }
+#in-progress { border-color: #ff0055; box-shadow: 0 0 10px #ff0055; }
+#completed { border-color: #00ff88; box-shadow: 0 0 10px #00ff88; }
+
+.list {
+    overflow-y: auto;
+    flex: 1;
+    padding: 5px;
+}
+
+/* Cyber Scrollbar */
+.list::-webkit-scrollbar {
+    width: 10px;
+}
+.list::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+.list::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00f0ff, #ff0055);
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00f0ff;
+}
+
+/* Task Card */
+.task-row {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00f0ff;
+    box-shadow: 0 0 8px #00f0ff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-row:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px #00f0ff;
+}
+
+.task-row p {
+    margin: 4px 0;
+}
+
+.small-text {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.delete-btn {
+    background-color: transparent;
+    color: #ff0055;
+    font-weight: bold;
+    border: 1px solid #ff0055;
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px #ff0055;
+}
+.delete-btn:hover {
+    background-color: #ff0055;
+    color: #fff;
+    box-shadow: 0 0 10px #ff0055;
+}

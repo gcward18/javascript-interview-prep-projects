@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="script.js" defer></script>
+        <link rel="stylesheet" href="styles.css"/>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Kanban App</h1> 
+            <div class="add-container">
+                <input type="text" id="add-item-text"/>
+                <button id="add-item-button">Add</button>
+            </div>
+        </div>
+        <div class="body">
+            <div class="grid">
+                <div id="to-do" class="column">
+                    <h2 class="title">To Do</h2>
+                    <div class="list"></div>
+                </div>
+                <div id="in-progress" class="column">
+                    <h2 class="title">In Progress</h2>
+                    <div class="list"></div>                    
+                </div>
+                <div id="completed" class="column">
+                    <h2 class="title">Completed</h2>
+                    <div class="list"></div>                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
