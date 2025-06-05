@@ -1,0 +1,42 @@
+:root {
+    --open: rgb(239, 196, 64);
+    --open-bg: rgba(239, 196,0, 0.1);
+    --planned: blue;
+    --planned-bg: rgba(0,0,255, 0.1);
+    --complete: green;
+    --complete-bg: rgba(0,255,0, 0.1);
+}
+#feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.row {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    border-left: 2px var(--open) solid;
+    background: var(--open-bg)
+}
+.row.open {
+    border-left: 2px var(--open) solid;
+    background: var(--open-bg)
+}
+.row.planned {
+    border-left: 2px var(--planned) solid;
+    background: var(--planned-bg)
+}
+.row.complete {
+    border-left: 2px var(--complete) solid;
+    background: var(--complete-bg)
+}
+
+.row .primary-text {
+    width: 80%;
+}
+.row button, select {
+    height: 25px;
+    align-self: center;
+}
